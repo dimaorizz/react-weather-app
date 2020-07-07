@@ -1,11 +1,12 @@
 import React from 'react';
 import darksky from '../api/darksky';
 import mapbox from '../api/mapbox';
+import TempInfo from './TempInfo/TempInfo';
 
 class App extends React.Component {
 
     state = {
-        place: '',
+        place: 'Запорожье',
         temperature: null,
     }
 
@@ -16,13 +17,13 @@ class App extends React.Component {
             long: mapBoxData.features[0].center[0],
         }
         const forecast = await darksky(location);
-        console.log(forecast.currently.temperature)
+        this.setState({temperature: forecast.currently.temperature})
     }
 
     render() {
         return (
             <div>
-                
+                <TempInfo place={this.state.place} temperature={this.state.temperature} />
             </div>
         )
     }
