@@ -1,0 +1,28 @@
+.header {
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.placeInput {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.placeInput form input {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.tempCard {
+    width: 30%;
+    border: 1px solid #cdcdcd;
+    margin: 30px auto;
+    text-align: center;
+    font-size: 1.2em;
+}
