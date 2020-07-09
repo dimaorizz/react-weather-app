@@ -1,14 +1,14 @@
 import React from 'react';
 import darksky from '../api/darksky';
 import mapbox from '../api/mapbox';
-import TempInfo from './TempInfo/TempInfo';
-import PlaceInput from './PlaceInput/PlaceInput'
+import TempCard from './TempCard';
+import PlaceInput from './PlaceInput'
 
 class App extends React.Component {
 
     state = {
         place: '',
-        temperature: null,
+        forecast: null,
     }
 
     onFormSubmit = (place) => {
@@ -18,7 +18,7 @@ class App extends React.Component {
     async componentDidUpdate() {
         const mapBoxData = await mapbox(this.state.place);
         if(mapBoxData.features === undefined) {
-            this.setState({ temperature: null });
+            this.setState({ forecast: null });
             return;
         }
         const location = {
@@ -26,7 +26,7 @@ class App extends React.Component {
             long: mapBoxData.features[0].center[0],
         }
         const forecast = await darksky(location);
-        this.setState({temperature: forecast.currently.temperature})
+        this.setState({forecast: forecast.currently})
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -38,9 +38,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 <PlaceInput onFormSubmit={this.onFormSubmit} />
-                <TempInfo place={this.state.place} temperature={this.state.temperature} />
+                <TempCard place={this.state.place} forecast={this.state.forecast} />
             </div>
         )
     }
