@@ -17,7 +17,10 @@ class App extends React.Component {
 
     async componentDidUpdate() {
         const mapBoxData = await mapbox(this.state.place);
-        console.log(mapBoxData);
+        if(mapBoxData.features === undefined) {
+            this.setState({ temperature: null });
+            return;
+        }
         const location = {
             lat: mapBoxData.features[0].center[1],
             long: mapBoxData.features[0].center[0],

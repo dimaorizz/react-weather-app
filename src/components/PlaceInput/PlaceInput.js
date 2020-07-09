@@ -14,7 +14,7 @@ class PlaceInput extends React.Component {
         return(
             <div className='placeInput'>
                 <form onSubmit={this.onSubmit}>
-                    <input type='text' onChange={(e) => this.setState({ place: e.target.value })} value={this.state.place} />
+                    <input type='text' onChange={(e) => this.setState({ place: e.target.value })} value={this.state.place} placeholder="Input a place" />
                 </form>
             </div>
         )
