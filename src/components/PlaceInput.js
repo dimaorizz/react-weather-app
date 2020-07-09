@@ -8,6 +8,7 @@ class PlaceInput extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.onFormSubmit(this.state.place);
+        this.setState({ place: '' });
     }
 
     render() {
